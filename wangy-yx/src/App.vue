@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    网易严选
+    <router-view></router-view>
+    <FooterGuide/>
   </div>
 </template>
 
 <script>
-
+import FooterGuide from './components/FooterGuide/FooterGuide.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    FooterGuide
+  }
 }
 </script>
 
 <style>
-
 </style>
