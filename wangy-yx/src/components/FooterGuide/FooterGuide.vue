@@ -58,7 +58,6 @@ export default {
   methods: {
     goto(path){
       //判断当前跳转的界面是否在同一个界面
-      console.log(this.$route.path);
       if(this.$route.path !== path){
         this.$router.replace(path)
       }
@@ -81,6 +80,7 @@ export default {
   width 100%
   height 50px
   display flex
+  border-top 1px solid #ccc
   .guide_item
     display flex
     flex 1
