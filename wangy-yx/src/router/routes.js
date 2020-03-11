@@ -3,6 +3,9 @@ import MyCart from '../pages/MyCart/MyCart.vue'
 import Personal from '../pages/Personal/Personal.vue'
 import Sort from '../pages/Sort/Sort.vue'
 import Worth from '../pages/Worth/Worth.vue'
+import SearchCon from '../components/SearchCon/SearchCon.vue'
+import FirstsItem from '../components/Firsts/FirstsItem'
+import Search from '../components/Search/Search.vue'
 
 export default [
   {
@@ -11,19 +14,38 @@ export default [
   },
   {
     path: "/mycarth",
-    component: MyCart
+    component: MyCart,
+    meta: { isShowFooter: true }
   }, {
     path: "/first",
-    component: First
+    component: First,
+    meta: { isShowFooter: true },
+    children: [
+      {
+        path: '/item',
+        component: FirstsItem
+      }
+    ]
   }, {
     path: "/personal",
-    component: Personal
+    component: Personal,
+    meta: { isShowFooter: true }
   }, {
     path: "/sort",
-    component: Sort
+    component: Sort,
+    meta: { isShowFooter: true }
   }, {
     path: "/worth",
-    component: Worth
+    component: Worth,
+    meta: { isShowFooter: true }
+  }, {
+    path: "/search",
+    component: Search,
+  },
+  {
+    path: "/searchcon",
+    component: SearchCon
   }
+
 ]
 

@@ -5,46 +5,24 @@
         <a href="" class="log"></a>
         <div class="topSearchIpt">
           <i  class="iconfont icon-concou"></i>
-          <span class="count_goods">搜索商品,工24191款好货</span>
+          <span class="count_goods" @click="$router.push('/search')">搜索商品,工24191款好货</span>
         </div>
         <div class="loginBtn">
-          <span class="m-btn">登录</span>
+          <span class="m-btn" >登录</span>
         </div>
       </div>
     </header>
     <div class="tabWrap">
-       <ul class="tw-goods" v-if="!isShowList">
-        <li ref="rightUl">
-          <span>推荐</span>
-        </li>
-        
-        <li>
-          <span>居家生活</span>
-        </li>
-         <li>
-          <span>居家生活</span>
-        </li> 
-        <li>
-          <span>居家生活</span>
-        </li> 
-        <li>
-          <span>居家生活</span>
-        </li> 
-        <li>
-          <span>居家生活</span>
-        </li> 
-        <li>
-          <span>居家生活</span>
-        </li> 
-        <li>
-          <span>居家生活</span>
-        </li>
-      </ul>
+      <van-tabs @click="toItemConten" v-if="!isShowList" swipeable ellipsis animated line-height="2" style="width:85%;">
+        <van-tab title="推荐"></van-tab>
+        <van-tab :title="modulet.name"  v-for="(modulet,index) in modulets" :key="index"></van-tab>
+      </van-tabs>
+
       <div class="tw-tabAlter" v-if="isShowList">
         <span class="tabAlter">全部频道</span>
       </div>
       
-      <span class="tw-show" @click="onShowList"> > </span>
+      <span class="tw-show" @click="onShowList"> <van-icon name="arrow-down" size="25px" /> </span>
     </div>
     <div class="moreCate" v-if="isShowList">
           <div class="cateTag">
@@ -103,93 +81,24 @@
     <!-- 品牌 -->
     <div class="m-indexServicePolicy">
       <ul class="g-gorw">
-        <li class="item">
+        <li class="g-item">
           <i class="iconfont icon-wangyi"></i>
           <span class="text">网易自营品牌</span>
         </li>
-        <li class="item">
+        <li class="g-item">
           <i class="iconfont icon-dui"></i>
           <span class="text">30天无忧退货</span>
         </li>
-        <li class="item">
+        <li class="g-item">
           <i class="iconfont icon-qian"></i>
           <span class="text">24小时快速退货</span>
         </li>
       </ul>
     </div>
     <!-- 内容 -->
-    <div class="index-content">
+    <div class="index-content" v-if="!isShowCont">
       <!-- 商品信息 -->
-      <div class="m-kingKongModule">
-        <div class="m-carousel">
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <a href="">
-                  <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" alt="">
-                  <div class="swiper-text">
-                    <span>新品首发</span>
-                  </div>
-                </a>
-                <a href="">
-                  <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" alt="">
-                  <div class="swiper-text">
-                    <span>新品首发</span>
-                  </div>
-                </a>
-                <a href="">
-                  <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" alt="">
-                  <div class="swiper-text">
-                    <span>新品首发</span>
-                  </div>
-                </a>
-                <a href="">
-                  <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" alt="">
-                  <div class="swiper-text">
-                    <span>新品首发</span>
-                  </div>
-                </a>
-                <a href="">
-                  <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" alt="">
-                  <div class="swiper-text">
-                    <span>新品首发</span>
-                  </div>
-                </a>
-                <a href="">
-                  <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" alt="">
-                  <div class="swiper-text">
-                    <span>新品首发</span>
-                  </div>
-                </a>
-                <a href="">
-                  <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" alt="">
-                  <div class="swiper-text">
-                    <span>新品首发</span>
-                  </div>
-                </a>
-                <a href="">
-                  <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" alt="">
-                  <div class="swiper-text">
-                    <span>新品首发</span>
-                  </div>
-                </a>
-                <a href="">
-                  <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" alt="">
-                  <div class="swiper-text">
-                    <span>新品首发</span>
-                  </div>
-                </a>
-                <a href="">
-                  <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" alt="">
-                  <div class="swiper-text">
-                    <span>新品首发</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <KingKong :kingkongs="kingKongList"/>
       <!-- 特价 -->
       <div class="m-indexBigPromotionModule">
         <div class="floorTop">
@@ -235,426 +144,102 @@
         </div>
       </div>
       <!-- 新人专享礼 -->
-      <div class="m-freshmanModule">
-        <div class="module-title">
-          <span class="module-text">
-            -新人专享礼-
-          </span>
-        </div>
-        <div class="module-coutner">
-          <a class="module-coutner-left" href="">
-            <div class="module-coutner-left-name">新人专享礼包</div>
-            <div class="module-coutner-left-imgWrap">
-              <div class="left-img">
-                <img class="m-lazyload" src="./img/index/xinren.png" alt="">
-              </div>
-              <!-- <div class="animate"></div> -->
-            </div>
-          </a>
-          <div class="module-coutner-right">
-            <div class="right-module1">
-              <a href="" class="right-activityItem1">
-                <div class="picWrap">
-                  <div >
-                    <img class="picWrap-img-ymj" src="./img/index/ymj.png" alt="">
-                  </div>
-                  <div class="picWrap-prive">
-                    <span>￥7.9</span>
-                    <span class="picWrap-prive-text2">￥9.9</span>
-                  </div>
-                </div>
-                <div class="discount">
-                  <span class="discount-ft">福利社</span>
-                  <span class="discount-tj">今日特价</span>
-                </div>
-              </a>
-            </div>
-            <div class="right-module2" >
-              <a href="" class="right-activityItem2">
-                <div class="cnt">
-                  <span class="cnt-t">新人抱团</span>
-                  <span class="cnt-b">1元起包邮</span>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Activity :Activitys="indexActivityModule"/>
 
       <!-- 类目热销榜 -->
-      <div class="m-categoryHotSellModule">
-          <div class="moduleTitle">
-            <div class="moduleTitle-left">
-              <span>类目热销榜</span>
-            </div>
-          </div>
-          <div class="L-content">
-            <div class="content-line1">
-              <a href="" class="item-big item-1" style="background-color:#F9F3E4">
-                <div class="data-reactid">
-                  <div class="data-reactid-name">
-                    <span>热销榜</span>
-                  </div>
-                </div>
-                <div class="imgWrap">
-                  <div class="imgWrap-img">
-                    <img src="./img/index/reactid-1.webp" alt="">
-                  </div>
-                </div>
-              </a>
-              <a href="" class="item-big item-2" style="background-color:#EBEFF6">
-                <div class="data-reactid">
-                  <div class="data-reactid-name">
-                    <span>好评榜</span>
-                  </div>
-                </div>
-                <div class="imgWrap">
-                  <div class="imgWrap-img">
-                    <img src="./img/index/reactid-2.webp" alt="">
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="content-line2">
-              <a href="" class="content-item">
-                <div class="name">
-                  居家生活榜
-                </div>
-                <div class="content-img">
-                  <img src="./img/index/item-1.webp" alt="">
-                </div>
-              </a>
-             <a href="" class="content-item">
-                <div class="name">
-                  居家生活榜
-                </div>
-                <div class="content-img">
-                  <img src="./img/index/item-2.webp" alt="">
-                </div>
-              </a>
-             <a href="" class="content-item">
-                <div class="name">
-                  居家生活榜
-                </div>
-                <div class="content-img">
-                  <img src="./img/index/item-3.webp" alt="">
-                </div>
-              </a>
-             <a href="" class="content-item">
-                <div class="name">
-                  居家生活榜
-                </div>
-                <div class="content-img">
-                  <img src="./img/index/item-4.webp" alt="">
-                </div>
-              </a>
-             <a href="" class="content-item">
-                <div class="name">
-                  居家生活榜
-                </div>
-                <div class="content-img">
-                  <img src="./img/index/item-5.webp" alt="">
-                </div>
-              </a>
-             <a href="" class="content-item">
-                <div class="name">
-                  居家生活榜
-                </div>
-                <div class="content-img">
-                  <img src="./img/index/item-6.webp" alt="">
-                </div>
-              </a>
-             <a href="" class="content-item">
-                <div class="name">
-                  居家生活榜
-                </div>
-                <div class="content-img">
-                  <img src="./img/index/item-1.webp" alt="">
-                </div>
-              </a>
-             <a href="" class="content-item">
-                <div class="name">
-                  居家生活榜
-                </div>
-                <div class="content-img">
-                  <img src="./img/index/item-1.webp" alt="">
-                </div>
-              </a>
-             
-            </div>
-          </div>
-      </div>
+      <HotSel :hotSels="categoryHotSellModule"/>
       <!-- 限时购 -->
-      <div class="m-flashSaleModule">
-        <div class="flashSale-moduleTitle">
-          <div>
-            限时购
-          </div>
-          <div>
-            <span>更多</span>
-            <i> > </i>
-          </div>
-        </div>
-        <div class="flashSale-cnt">
-          <a href="" class="m-indexFlashSaleItem">
-            <div class="flashSale-img">
-              <img src="./img/index/flashSale.webp" alt="">
-            </div>
-            <div class="flashSale-price">
-              <span class="actualPrice">￥199</span>
-              <span class="retailPrice">￥299</span>
-            </div>
-          </a>
-          <a href="" class="m-indexFlashSaleItem">
-            <div class="flashSale-img">
-              <img src="./img/index/flashSale.webp" alt="">
-            </div>
-            <div class="flashSale-price">
-              <span class="actualPrice">￥199</span>
-              <span class="retailPrice">￥299</span>
-            </div>
-          </a>
-          <a href="" class="m-indexFlashSaleItem">
-            <div class="flashSale-img">
-              <img src="./img/index/flashSale.webp" alt="">
-            </div>
-            <div class="flashSale-price">
-              <span class="actualPrice">￥199</span>
-              <span class="retailPrice">￥299</span>
-            </div>
-          </a>
-          <a href="" class="m-indexFlashSaleItem">
-            <div class="flashSale-img">
-              <img src="./img/index/flashSale.webp" alt="">
-            </div>
-            <div class="flashSale-price">
-              <span class="actualPrice">￥199</span>
-              <span class="retailPrice">￥299</span>
-            </div>
-          </a>
-          <a href="" class="m-indexFlashSaleItem">
-            <div class="flashSale-img">
-              <img src="./img/index/flashSale.webp" alt="">
-            </div>
-            <div class="flashSale-price">
-              <span class="actualPrice">￥199</span>
-              <span class="retailPrice">￥299</span>
-            </div>
-          </a>
-          <a href="" class="m-indexFlashSaleItem">
-            <div class="flashSale-img">
-              <img src="./img/index/flashSale.webp" alt="">
-            </div>
-            <div class="flashSale-price">
-              <span class="actualPrice">￥199</span>
-              <span class="retailPrice">￥299</span>
-            </div>
-          </a>
-        </div>
-      </div>
+      <FlashSale :flashSale="flashSaleModule"/>
       <!-- 新品首发 -->
-      <div class="m-newItemModule">
-        <div class="newItem-moduleTitle">
-          <div>
-            新品首发
-          </div>
-          <div>
-            <span>更多</span>
-            <i> > </i>
-          </div>
-        </div>
-        <div class="newItem-cnt">
-          <a href="" class="m-indexNewItemItem">
-            <div class="newItem-img">
-              <img src="./img/index/newItem-1.webp" alt="">
-            </div>
-            <div class="newItem-name">
-              <span>告别桌面沙发尘屑毛发，mini桌面吸尘器</span>
-            </div>
-            <div class="newItem-price">
-              <span>￥59</span>
-            </div>
-            <div class="newItem-tagWraper">
-              <span>新品尝鲜</span>
-            </div>
-          </a>
-          <a href="" class="m-indexNewItemItem">
-            <div class="newItem-img">
-              <img src="./img/index/newItem-2.webp" alt="">
-            </div>
-            <div class="newItem-name">
-              <span>家庭装大容量，75%酒精消毒液500ml</span>
-            </div>
-            <div class="newItem-price">
-              <span>￥59</span>
-            </div>
-            <div class="newItem-tagWraper">
-              <span>新品尝鲜</span>
-            </div>
-          </a>
-          <a href="" class="m-indexNewItemItem">
-            <div class="newItem-img">
-              <img src="./img/index/newItem-3.webp" alt="">
-            </div>
-            <div class="newItem-name">
-              <span>家庭装大容量，75%酒精消毒液500ml</span>
-            </div>
-            <div class="newItem-price">
-              <span>￥45</span>
-            </div>
-            <div class="newItem-tagWraper">
-              <span>新品尝鲜</span>
-            </div>
-          </a>
-          <a href="" class="m-indexNewItemItem">
-            <div class="newItem-img">
-              <img src="./img/index/newItem-4.webp" alt="">
-            </div>
-            <div class="newItem-name">
-              <span>有效杀灭H1N1流感病毒，高达99.999%的除菌率</span>
-            </div>
-            <div class="newItem-price">
-              <span>￥59</span>
-            </div>
-            <div class="newItem-tagWraper">
-              <span>新品尝鲜</span>
-            </div>
-          </a>
-          <a href="" class="m-indexNewItemItem">
-            <div class="newItem-img">
-              <img src="./img/index/newItem-7.webp" alt="">
-            </div>
-            <div class="newItem-name">
-              <span>私享理发师，儿童理发器 静音款/吸发款</span>
-            </div>
-            <div class="newItem-price">
-              <span>￥79</span>
-            </div>
-            <div class="newItem-tagWraper">
-              <span>新品尝鲜</span>
-            </div>
-          </a>
-          <a href="" class="m-indexNewItemItem">
-            <div class="newItem-img">
-              <img src="./img/index/newItem-6.webp" alt="">
-            </div>
-            <div class="newItem-name">
-              <span>复工防护45天，便携空气净化除菌卡</span>
-            </div>
-            <div class="newItem-price">
-              <span>￥79</span>
-            </div>
-            <div class="newItem-tagWraper">
-              <span>新品尝鲜</span>
-            </div>
-          </a>
-        </div>
-      </div>
+      <NewItemList :newItemList="newItemList"/>
       <!-- 断货补单 -->
-      <div class="m-sceneLightShoppingGuideModule">
-        <div class="m-styleBanner">
-          <a class="m-styleBanner-cnt">
-            <div class="m-styleBanner-title">断货补单王</div>
-            <div class="m-styleBanner-desc">补单疯抢中</div>
-            <div class="m-styleBanner-img">
-              <img src="./img/index/scene-6.webp" alt="">
-              <img src="./img/index/scene-2.webp" alt="">
-            </div>
-          </a>
-        </div>
-        <div class="m-styleBanner">
-          <a class="m-styleBanner-cnt">
-            <div class="m-styleBanner-title">断货补单王</div>
-            <div class="m-styleBanner-desc">补单疯抢中</div>
-            <div class="m-styleBanner-img">
-              <img src="./img/index/scene-1.webp" alt="">
-              <img src="./img/index/scene-2.webp" alt="">
-            </div>
-          </a>
-        </div>
-        <div class="m-styleBanner">
-          <a class="m-styleBanner-cnt">
-            <div class="m-styleBanner-title">断货补单王</div>
-            <div class="m-styleBanner-desc">补单疯抢中</div>
-            <div class="m-styleBanner-img">
-              <img src="./img/index/scene-2.webp" alt="">
-              <img src="./img/index/scene-3.webp" alt="">
-            </div>
-          </a>
-        </div>
-        <div class="m-styleBanner">
-          <a class="m-styleBanner-cnt">
-            <div class="m-styleBanner-title">断货补单王</div>
-            <div class="m-styleBanner-desc">补单疯抢中</div>
-            <div class="m-styleBanner-img">
-              <img src="./img/index/scene-4.webp" alt="">
-              <img src="./img/index/scene-5.webp" alt="">
-            </div>
-          </a>  
-        </div>
-      </div>
-
-
+      <SceneLigh :sceneLigh="sceneLightShoppingGuideModule"/>
       <!-- 底部 -->
-      <header class="l-header">
-        <div class="l-ft">
-          <div class="bd" >
-            <a class="bd1" href="">下载APP</a>
-            <a class="bd2" href="">电脑版</a>
-          </div>
-          <p class="copyright">
-            <span>网易公司版权所有 © 1997-</span>
-            <span>2020</span>
-            <br>
-            <span>食品经营许可证：JY13301080111719</span>
-          </p>
-        </div>
-      </header>
 
     </div>
+    <FirstsItem v-if="isShowCont" :modulet="modulet"/>
+
+    <header class="l-header">
+      <div class="l-ft">
+        <div class="bd" >
+          <a class="bd1" href="">下载APP</a>
+          <a class="bd2" href="">电脑版</a>
+        </div>
+        <p class="copyright">
+          <span>网易公司版权所有 © 1997-</span>
+          <span>2020</span>
+          <br>
+          <span>食品经营许可证：JY13301080111719</span>
+        </p>
+      </div>
+    </header>
   </div>
 </template>
 <script>
-// import BScroll from "better-scroll";
+import {mapState} from 'vuex'
+import KingKong from '../../components/Firsts/kingKong'
+import Activity from '../../components/Firsts/Activity'
+import HotSel from '../../components/Firsts/HotSel'
+import FlashSale from '../../components/Firsts/FlashSale'
+import NewItemList from '../../components/Firsts/NewItemList'
+import SceneLigh from '../../components/Firsts/SceneLigh'
+import FirstsItem from '../../components/Firsts/FirstsItem'
 export default {
   name: "First",
+  components: {
+    KingKong, //商铺信息
+    Activity, //新人专享礼
+    HotSel,    //类目热销榜
+    FlashSale,  //限时购
+    NewItemList,
+    SceneLigh,
+    FirstsItem
+  },
+  computed: {
+    ...mapState({
+      firses:state=>state.firse.firses,
+      modulets:state=>state.firse.modulets
+    })
+  },
   data () {
     return {
-      isShowList:false
+      isShowCont:false,
+      isShowList:false,
+      kingKongList:[],
+      indexActivityModule:[],
+      categoryHotSellModule:{},
+      flashSaleModule:{},
+      newItemList:[],
+      sceneLightShoppingGuideModule:[],
+      modulet:{}
       //  scrolly: 0, //滑动的距离
       //  tops: [], //右侧列表高度范围的数组
     }
   },
-  mounted () {
-    // this._initBscroll(),
-    // //初始化滑动距离
-    // this._ininTops()
+  async mounted () {
+    await this.$store.dispatch('getFirse')
+    const {sceneLightShoppingGuideModule,newItemList,flashSaleModule,kingKongModule,indexActivityModule,categoryHotSellModule} = this.firses
+    this.newItemList = newItemList
+    this.flashSaleModule = flashSaleModule
+    this.categoryHotSellModule = categoryHotSellModule
+    this.kingKongList = kingKongModule.kingKongList
+    this.indexActivityModule = indexActivityModule
+    this.sceneLightShoppingGuideModule = sceneLightShoppingGuideModule
+
+    await this.$store.dispatch('getModulets')
   },
   methods: {
      onShowList(){
       this.isShowList = !this.isShowList
+    },
+    toItemConten(event){    
+      if(event > 0){
+        this.isShowCont = true
+        this.modulet = this.modulets.find((item,index)=> index === event-1)
+      }else{
+        this.isShowCont = false
+      }
     }
-    // _initBscroll(){
-    //   new BScroll(".tabWrap", {
-    //     click: true,
-    //     scrollX:true
-    //   });
-    // },
-    // _ininTops(){
-    //   const tops = [];
-    //   let top = 0;
-    //   tops.push(top);
-    //   //获取所有的li标签
-    //   const list = this.$refs.rightUl.children;
-    //   Array.prototype.slice.call(list).forEach(li => {
-    //     //获取li标签的高度
-    //     top += li.offsetwidth
-    //     //把添加到数组中
-    //     tops.push(top);
-    //   });
-    //   //初始化tops数据
-    //   this.tops = tops;
-    // }
   }
 };
 </script>
@@ -715,8 +300,9 @@ export default {
           font-size 12px
   .tabWrap
     width 100%
-    position flex
     display flex
+    justify-content space-between
+    align-items center
     z-index 100
     font-size 15px
     // margin-top 25px
@@ -834,7 +420,7 @@ export default {
                   text-align center
     .m-indexBigPromotionModule
       width 100%
-      height 450px
+      height 400px
       background-color #cc3256
       background-size 100% 100%
       overflow hidden
@@ -1194,12 +780,15 @@ export default {
               font-size 15px
           .newItem-tagWraper
             padding-left 5px
+            display flex
             span
               line-height 18px
               border 1px solid red
-              border-radius 10px
+              border-radius 8px
               color red
-              font-size 8px
+              font-size 6px
+              display block
+              margin-left 10px
     // <!-- 断货补单 -->
     .m-sceneLightShoppingGuideModule
       // width 100% 
@@ -1213,8 +802,8 @@ export default {
       justify-content space-between
       .m-styleBanner
         background-color #F5F5F5
-        // padding 10px 0 0 10px
-        // margin-bottom 10px
+        // display flex
+        // display-wrap wrap
         margin-top 10px
         .m-styleBanner-cnt 
           width 120px
@@ -1230,43 +819,43 @@ export default {
               width 85px
               height 85px
     // <!-- 底部 -->
-    .l-header
-      height 150px
-      background-color #414141
-      position relative
-      font-size 15px
-      .l-ft
-        position absolute
-        left 0
-        right 0
-        top 0
-        bottom 0
-        margin auto
-        height 90px
-        width 80%
+  .l-header
+    height 150px
+    background-color #414141
+    position relative
+    font-size 15px
+    .l-ft
+      position absolute
+      left 0
+      right 0
+      top 0
+      bottom 0
+      margin auto
+      height 90px
+      width 80%
+      display flex
+      flex-direction column 
+      justify-content center 
+      .bd
         display flex
-        flex-direction column 
-        justify-content center 
-        .bd
-          display flex
-          justify-content center
-          a
-            text-align center
-            border 1px solid #fff
-            width 100px
-            height 36px
-            line-height 36px
-            color #fff
-            margin-bottom 10px
-            border-radius 20px
-          .bd2
-            margin-left 15px
-          .bd1
-            margin-right 15px
-        .copyright
-          line-height 22px
+        justify-content center
+        a
           text-align center
-          display inline-block
-          span
-            color #fff
+          border 1px solid #fff
+          width 100px
+          height 36px
+          line-height 36px
+          color #fff
+          margin-bottom 10px
+          border-radius 20px
+        .bd2
+          margin-left 15px
+        .bd1
+          margin-right 15px
+      .copyright
+        line-height 22px
+        text-align center
+        display inline-block
+        span
+          color #fff
 </style>

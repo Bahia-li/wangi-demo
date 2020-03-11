@@ -1,11 +1,15 @@
 <template>
   <div>
-      购物车
+      <SearchCon></SearchCon>
   </div>
 </template>
 <script>
+import SearchCon from '../../components/SearchCon/SearchCon.vue'
 export default {
-  name:"MyCart"
+  name:"MyCart",
+  components: {
+    SearchCon
+  }
 }
 </script>
 <style scoped>

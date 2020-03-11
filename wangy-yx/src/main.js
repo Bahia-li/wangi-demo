@@ -11,6 +11,8 @@ import Mint from 'mint-ui';
 import Vant from 'vant'
 import 'vant/lib/index.css';
 
+import store from './store'
+
 Vue.use(Vant);
 
 import './tools/rem'
@@ -24,5 +26,6 @@ new Vue({
     App
   },
   template: '<App/>',
-  router
+  router,
+  store
 })
