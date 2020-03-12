@@ -28,8 +28,7 @@ export default [
     ]
   }, {
     path: "/personal",
-    component: Personal,
-    meta: { isShowFooter: true }
+    component: Personal
   }, {
     path: "/sort",
     component: Sort,

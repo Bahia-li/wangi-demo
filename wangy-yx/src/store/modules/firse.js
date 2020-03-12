@@ -1,6 +1,6 @@
 import { REQ_INDEX, REQ_MODULETS,REQ_CATESTATE } from '../mutations-types.js'
 //获取请求接口
-import { reqIndexList, reqCateModulet, reqCateState } from '../../api'
+import { reqIndexList, reqCateModulet ,reqCateState} from '../../api'
 
 
 //数据
@@ -52,10 +52,10 @@ const actions = {
   async getCateState({ commit }){
     //获取列表数据
     const result = await reqCateState();
+    
     //判断数据是否请求成功200-299
     if (result.status >= 200 && result.status < 299) {
       const cateState = result.data
-
       commit(REQ_CATESTATE, cateState)
     }
   }

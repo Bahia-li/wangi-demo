@@ -12,5 +12,6 @@ export const reqIndexList = () => ajs.get(BASE+'/item')
 //获取商品分类数据
 export const reqCateModulet = () => ajs.get(BASE+'/mode')
 
-//获取个人买轮播图数据
+//获取值得买轮播图数据
 export const reqCateState = () => ajs.get(BASE+'/state')
+

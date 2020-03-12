@@ -13,40 +13,25 @@
       </div>
     </header>
     <div class="tabWrap">
-      <van-tabs @click="toItemConten" v-if="!isShowList" swipeable ellipsis animated line-height="2" style="width:85%;">
+      <van-tabs class="tabs" @click="toItemConten" v-if="!isShowList" swipeable ellipsis animated line-height="2" style="width:85%;">
         <van-tab title="推荐"></van-tab>
         <van-tab :title="modulet.name"  v-for="(modulet,index) in modulets" :key="index"></van-tab>
       </van-tabs>
-
-      <div class="tw-tabAlter" v-if="isShowList">
-        <span class="tabAlter">全部频道</span>
-      </div>
       
-      <span class="tw-show" @click="onShowList"> <van-icon name="arrow-down" size="25px" /> </span>
+      <!-- <span class="tw-show" @click="onShowList"> <van-icon name="arrow-down" size="25px" /> </span> -->
+      <van-collapse class="coll" @change="onShowList" v-model="activeNames" accordion>
+        <van-collapse-item title="全部频道" name="1">
+           <div class="moreCate">
+            <div class="cateTag">
+              <span>推荐</span>
+            </div>
+            <div class="cateTag"  v-for="(modulet,index) in modulets" :key="index">
+              <span>{{modulet.name}}</span>
+            </div>
+        </div>
+        </van-collapse-item>
+      </van-collapse>
     </div>
-    <div class="moreCate" v-if="isShowList">
-          <div class="cateTag">
-            <span>推荐</span>
-          </div>
-          <div class="cateTag">
-            <span>推荐</span>
-          </div>
-          <div class="cateTag">
-            <span>推荐</span>
-          </div>
-          <div class="cateTag">
-            <span>推荐</span>
-          </div>
-          <div class="cateTag">
-            <span>推荐</span>
-          </div>
-          <div class="cateTag">
-            <span>推荐</span>
-          </div>
-          <div class="cateTag">
-            <span>推荐</span>
-          </div>
-      </div>
     <!-- 遮盖层 -->
     <div class="mask" v-if="isShowList"></div>
     <!-- 轮播图 -->
@@ -203,6 +188,7 @@ export default {
   },
   data () {
     return {
+      activeName:"1",
       isShowCont:false,
       isShowList:false,
       kingKongList:[],
@@ -307,7 +293,13 @@ export default {
     font-size 15px
     // margin-top 25px
     padding-top 25px
+    position relative
     // justify-content space-around
+    .tabs
+      position absolute
+      z-index 2
+    .coll
+      width 100%
     .tw-goods
       width 80%
       white-space nowrap//禁止换行

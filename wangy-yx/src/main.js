@@ -13,6 +13,8 @@ import 'vant/lib/index.css';
 
 import store from './store'
 
+Vue.prototype.$EventBus = new Vue()
+
 Vue.use(Vant);
 
 import './tools/rem'

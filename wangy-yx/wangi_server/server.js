@@ -10,6 +10,9 @@ let navDatas = require('./datas/cateNavDatas.json')
 let index = require('./datas/index.json')
 let cateModule = require('./datas/indexCateModule.json')
 let state = require('./datas/state.json')
+
+//值得买接口
+
 //请求获取所有列表的数据
 router.get('/sortlist',(ctx,next)=>{
   ctx.body = cateList
